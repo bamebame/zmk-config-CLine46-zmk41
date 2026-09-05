@@ -61,20 +61,22 @@
     };
 };
 
-// === オートマウスレイヤー(MOUSE=2)の誤爆対策 ===
+// === オートマウスレイヤー(BALL=4)の誤爆対策 ===
 // zip_temp_layer 自体は移動量しきい値を持たないため、時間と打鍵で制御する。
 &zip_temp_layer {
-    // 直前の打鍵から 150ms 以内はボールを動かしても MOUSE 層へ入らない。
+    // 直前の打鍵から 150ms 以内はボールを動かしても BALL 層へ入らない。
     // タイピング中に手がボールに触れたときの誤爆を防ぐ。
     require-prior-idle-ms = <150>;
 
-    // ここに挙げた位置「以外」のキーを押すと MOUSE 層を即座に解除する。
-    // = MOUSE 層で実際に使うキーだけを列挙 (位置番号は 0..45)。
-    //    6  7  8  9 10   LC(Y) LC(C) LC(V) LC(X) LC(P)
-    //   18 19 20 21 22   LC(Z) 左クリック ↑ 右クリック LC(F)
-    //   30 31 32 33 34   LC(A) ← ↓ → MO(SCROLL)
-    //   39               MOUSE 層を手動で開く &lt 2 (プロセッサと競合させない)
-    excluded-positions = <6 7 8 9 10 18 19 20 21 22 30 31 32 33 34 39>;
+    // ここに挙げた位置「以外」のキーを押すと BALL 層を即座に解除する。
+    // = BALL 層で実際に使うキーだけを列挙 (位置番号は 0..45)。
+    //    6  7  8  9      LC(W) 中クリック MB4 MB5
+    //   18 19 20 21      ← 左クリック 右クリック →
+    //   30 31 32 33      MO(SCROLL) スクロール下 スクロール上 LCTRL
+    //   12 24 35         LCTRL / LSHIFT / RSHIFT (Ctrl+クリック等のため層を維持)
+    //   39               左親指 td_lctl (hold=LCTRL)
+    //   ※ 上記以外は BALL 層で &none か &trans。押した時点で BALL 層を抜ける。
+    excluded-positions = <6 7 8 9 12 18 19 20 21 24 30 31 32 33 35 39>;
 };
 
 // Overrides for the input listener node
@@ -84,11 +86,11 @@
         //<&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;         //Y軸反転
         //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
         <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-        <&zip_temp_layer 2 500>;                            //ボール移動で MOUSE(2) 層へ / 停止後 500ms で復帰
+        <&zip_temp_layer 4 500>;                            //ボール移動で BALL(4) 層へ / 停止後 500ms で復帰
 
 
     scroller {
-        layers = <3>;
+        layers = <5>;                                       //SCROLL 層
         input-processors = 
             // <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
             // <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転

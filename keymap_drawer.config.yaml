@@ -7,3 +7,6 @@ parse_config:
     "&studio_unlock": "STUDIO"
     "&mkp MB1": "L CLICK"
     "&mkp MB2": "R CLICK"
+    "&mkp LCLK": "L CLICK"
+    "&mkp RCLK": "R CLICK"
+    "&mkp MCLK": "M CLICK"

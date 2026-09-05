@@ -37,37 +37,45 @@ ZMK 4.1（Zephyr 4.1）系では、**`CONFIG_ZMK_STUDIO=y` のとき central が
 
 ## キーマップ
 
-`&mo 3` / `&lt 1` / `&lt 2` の位置は各図の緑枠（held）で示している。`▽` は下の層への透過。
+**[zmk-config-Keyball44](https://github.com/bamebame/zmk-config-Keyball44) からの移植**。
+上段3段は 1:1 で対応し、親指は物理 x 座標で対応付けている。Keyball44 では `&none`
+だった外側の列（`TAB` `[` / `LCTRL` `]` / `LSHIFT` `RSHIFT`）は CLine46 の割当を
+全レイヤーで活かしている（上位レイヤーでは `&trans`）。
 
-### BASE — デフォルト層
+Keyball44 に無い余りキーは 2 つ。左最外の親指 (p36) と右のボール右側 (p44) で、
+デフォルト層では `&none`、SCROLL 層でのみ `&bootloader` を割り当てている。
 
-![BASE](keymap-drawer/CLine46-BASE.svg)
+緑枠は そのレイヤーを開いているキー（held）、`▽` は下の層への透過。
 
-### SYM — 記号・数字層（左親指 `SPACE` ホールド）
+### QWRT — デフォルト層
 
-![SYM](keymap-drawer/CLine46-SYM.svg)
+![QWRT](keymap-drawer/CLine46-QWRT.svg)
 
-### MOUSE — マウス層（**ボールを動かすと自動で入る** / 左親指 `無変換` ホールドでも入る）
+### NAV — ナビ / 音量 / コピペ（左親指 `&td0 NAV`）
 
-![MOUSE](keymap-drawer/CLine46-MOUSE.svg)
+![NAV](keymap-drawer/CLine46-NAV.svg)
 
-### SCROLL — 設定層（右手小指 `&mo 3`）
+### FUN — F-key（`&td0` の tap から `&mo FUN`）
 
-スクロールモードでもある（ボール操作がスクロールになる）。`BOOT` はブートローダー、
+![FUN](keymap-drawer/CLine46-FUN.svg)
+
+### NUM — 数字行（右親指 `&td3 NUM`）
+
+![NUM](keymap-drawer/CLine46-NUM.svg)
+
+### BALL — マウス層（**ボールを動かすと自動で入る**）
+
+停止後 500ms、または `excluded-positions` 外のキー押下で抜ける。詳細は下の
+「オートマウスレイヤー」を参照。
+
+![BALL](keymap-drawer/CLine46-BALL.svg)
+
+### SCROLL — 設定層（右親指最外 `&mo SCROLL`）
+
+ボール操作がスクロールになる層でもある。`BOOT` はブートローダー（左右に 1 つずつ）、
 `STUDIO` は ZMK Studio のロック解除。
 
 ![SCROLL](keymap-drawer/CLine46-SCROLL.svg)
-
-<details>
-<summary>L4 / L5 / L6（未使用・全て透過）</summary>
-
-どのレイヤーからも遷移する手段が定義されていない空きレイヤー。
-
-![L4](keymap-drawer/CLine46-L4.svg)
-![L5](keymap-drawer/CLine46-L5.svg)
-![L6](keymap-drawer/CLine46-L6.svg)
-
-</details>
 
 ### キーマップ図の再生成
 
@@ -82,7 +90,7 @@ keymap -c keymap_drawer.config.yaml parse -z config/CLine46.keymap > keymap-draw
 sed -i 's|layout: {zmk_keyboard: CLine46}|layout: {qmk_info_json: config/CLine46.json}|' keymap-drawer/CLine46.yaml
 
 keymap -c keymap_drawer.config.yaml draw -o keymap-drawer/CLine46.svg keymap-drawer/CLine46.yaml
-for L in BASE SYM MOUSE SCROLL L4 L5 L6; do
+for L in $(python -c "import yaml; print(' '.join(yaml.safe_load(open('keymap-drawer/CLine46.yaml'))['layers']))"); do
   keymap -c keymap_drawer.config.yaml draw -o "keymap-drawer/CLine46-$L.svg" keymap-drawer/CLine46.yaml -s "$L"
 done
 ```
@@ -133,24 +141,24 @@ Studio を一度も使っていなければ 3 は不要。
 upstream ではコメントアウトされている `zip_temp_layer` を有効化し、誤爆対策を追加した。
 
 ```
-ボールを動かす → MOUSE(2) 層 ON   ※直前 150ms 以内に打鍵していれば発動しない
+ボールを動かす → BALL(4) 層 ON   ※直前 150ms 以内に打鍵していれば発動しない
 何かキーを打つ → 即 OFF           ※excluded-positions のキーを除く
 500ms 放置     → OFF
 ```
 
 - `require-prior-idle-ms = <150>` … タイピング中の誤爆を防ぐ
-- `excluded-positions` … MOUSE 層で実際に使うキー（右手クラスタ + 手動 `&lt 2`）。
+- `excluded-positions` … BALL 層で実際に使うキー（右手クラスタ + 外側列の修飾キー + 左親指 `td_lctl`）。
   ここに無いキーを押すと即座に層が抜ける
-- タイムアウト … `<&zip_temp_layer 2 500>` の `500`
+- タイムアウト … `<&zip_temp_layer 4 500>` の `500`
 
 `zip_temp_layer` には移動量のしきい値が無いので、誤爆は移動量ではなく
 「打鍵からの経過時間」と「打鍵による即時解除」で抑えている。
 
-**注意**: `zip_temp_layer 2 500` の `2`（MOUSE 層のインデックス）はコンパイル時に固定される。
+**注意**: `zip_temp_layer 4 500` の `4`（BALL 層のインデックス）はコンパイル時に固定される。
 Studio でレイヤー構成を組み替えるとここは追従しないので、レイヤー順を変えたら overlay も直すこと。
 
-**MOUSE 層の左手は F1〜F12**。誤爆すると「何も出ない」ではなく F キーが出るため、
-頻度が気になるなら F キーを別レイヤーへ逃がすこと。
+BALL 層の左手はほぼ `&none` / `&trans`。`excluded-positions` に無いキーは押した時点で
+層を抜けるので、誤爆しても次の打鍵から通常どおり入力できる。
 
 ## ファームウェアの書き込み
 
@@ -159,8 +167,8 @@ DYA Studio / ZMK Studio に uf2 書き込み機能は無い（Studio が扱う�
 
 ### ブートローダーへの入り方
 
-- **キーで入る（推奨）**: `&mo 3`（SCROLL 層）を押しながら、
-  **左半体は p1（デフォルト層の `Q` の位置）/ 右半体は p11（同 `]` の位置）**。
+- **キーで入る（推奨）**: `&mo SCROLL`（右親指の最も外側）を押しながら、
+  **左半体は最も外側の左親指キー / 右半体はボール右側の内側キー**（SCROLL 層の図で `BOOT` と表示されている 2 箇所）。
   `&bootloader` は `BEHAVIOR_LOCALITY_EVENT_SOURCE` なので **押した側の半体だけ**が入る。
 - **物理リセット**: ケースの ▢ の穴から竹串などで Xiao の reset スイッチを 2 回クリック。
   `&bootloader` を含まないファームが入っている場合（初回など）はこちら。
