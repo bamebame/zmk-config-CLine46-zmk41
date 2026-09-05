@@ -1,0 +1,1269 @@
+{
+  "$schema": "https://abyss.keyboard-hub.com/schemas/keymap/v1.json",
+  "keyboard": "cline46",
+  "name": "CLine46 — 2026-09-05",
+  "description": "Imported from ZMK Studio",
+  "layers": [
+    {
+      "name": "Layer 1",
+      "bindings": [
+        {
+          "type": "key",
+          "usage": 43,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 20,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 26,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 8,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 21,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 23,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 28,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 24,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 12,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 18,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 19,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 47,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 224,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 4,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 22,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 7,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 9,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 10,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 11,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 13,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 14,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 15,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 45,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 48,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 225,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 29,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 27,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 6,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 25,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 5,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 17,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 16,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 54,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 55,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "mo",
+          "layer": 3
+        },
+        {
+          "type": "key",
+          "usage": 229,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 41,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 227,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 226,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "lt",
+          "layer": 2,
+          "usage": 139,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "lt",
+          "layer": 1,
+          "usage": 44,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "mt",
+          "mod": "LSHIFT",
+          "usage": 138,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 40,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 42,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 38,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 76,
+          "usagePage": "keyboard"
+        }
+      ]
+    },
+    {
+      "name": "Layer 2",
+      "bindings": [
+        {
+          "type": "raw",
+          "zmk": "&kp 34013219",
+          "label": "Key Press 34013219 NO"
+        },
+        {
+          "type": "key",
+          "usage": 46,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 36,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 37,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 38,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013215",
+          "label": "Key Press 34013215 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013222",
+          "label": "Key Press 34013222 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013236",
+          "label": "Key Press 34013236 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013223",
+          "label": "Key Press 34013223 NO"
+        },
+        {
+          "type": "key",
+          "usage": 51,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013214",
+          "label": "Key Press 34013214 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013240",
+          "label": "Key Press 34013240 NO"
+        },
+        {
+          "type": "key",
+          "usage": 45,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013230",
+          "label": "Key Press 34013230 NO"
+        },
+        {
+          "type": "key",
+          "usage": 33,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 34,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 35,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013216",
+          "label": "Key Press 34013216 NO"
+        },
+        {
+          "type": "key",
+          "usage": 47,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 52,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 48,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013235",
+          "label": "Key Press 34013235 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013220",
+          "label": "Key Press 34013220 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013233",
+          "label": "Key Press 34013233 NO"
+        },
+        {
+          "type": "key",
+          "usage": 56,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013221",
+          "label": "Key Press 34013221 NO"
+        },
+        {
+          "type": "key",
+          "usage": 30,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 31,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 32,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013229",
+          "label": "Key Press 34013229 NO"
+        },
+        {
+          "type": "key",
+          "usage": 56,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 49,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 54,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 55,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013217",
+          "label": "Key Press 34013217 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 34013218",
+          "label": "Key Press 34013218 NO"
+        },
+        {
+          "type": "key",
+          "usage": 41,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 39,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 55,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "key",
+          "usage": 40,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 42,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 76,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "trans"
+        }
+      ]
+    },
+    {
+      "name": "Layer 3",
+      "bindings": [
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "key",
+          "usage": 64,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 65,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 66,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 67,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235996",
+          "label": "Key Press 17235996 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235974",
+          "label": "Key Press 17235974 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235993",
+          "label": "Key Press 17235993 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235995",
+          "label": "Key Press 17235995 NO"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235987",
+          "label": "Key Press 17235987 NO"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "key",
+          "usage": 61,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 62,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 63,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 68,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235997",
+          "label": "Key Press 17235997 NO"
+        },
+        {
+          "type": "mouse_button",
+          "button": 1
+        },
+        {
+          "type": "key",
+          "usage": 82,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "mouse_button",
+          "button": 2
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235977",
+          "label": "Key Press 17235977 NO"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "key",
+          "usage": 58,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 59,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 60,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 69,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "raw",
+          "zmk": "&kp 17235972",
+          "label": "Key Press 17235972 NO"
+        },
+        {
+          "type": "key",
+          "usage": 80,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 81,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 79,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "key",
+          "usage": 40,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 42,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 74,
+          "usagePage": "keyboard"
+        },
+        {
+          "type": "key",
+          "usage": 77,
+          "usagePage": "keyboard"
+        }
+      ]
+    },
+    {
+      "name": "Layer 4",
+      "bindings": [
+        {
+          "type": "bluetooth",
+          "action": "clear"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "clear_all"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 4
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 1
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 2
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 3
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 0
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "raw",
+          "zmk": "&studio_unlock",
+          "label": "Studio Unlock NO NO"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        }
+      ]
+    },
+    {
+      "name": "Layer 5",
+      "bindings": [
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 4
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 1
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 2
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 3
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "bluetooth",
+          "action": "select",
+          "profile": 0
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        }
+      ]
+    },
+    {
+      "name": "Layer 6",
+      "bindings": [
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        }
+      ]
+    },
+    {
+      "name": "Layer 7",
+      "bindings": [
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        },
+        {
+          "type": "trans"
+        }
+      ]
+    }
+  ]
+}
