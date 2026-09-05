@@ -2,23 +2,75 @@ name: "Draw Keymap"
 
 on:
   workflow_dispatch:
-  # push時に自動で実行する場合は、以下のコメントアウトを外す
-  # push:
-  #   paths:
-  #     - "config/roBa.keymap"
-  #     - "keymap_drawer.config.yaml"
-  #     - "config/roBa.dtsi"
+  push:
+    paths:
+      - "config/CLine46.keymap"
+      - "config/CLine46.json"
+      - "keymap_drawer.config.yaml"
+      - ".github/workflows/draw.yml"
 
 jobs:
   draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@f9cf9d3677368a7fb1dc505c51b8156fafa66fe2
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    with:
-      commit_message: "[Draw] ${{ github.event.head_commit.message || 'Update keymap drawing' }}"
-      amend_commit: false
-      keymap_patterns: "config/*.keymap"
-      json_path: "config"
-      config_path: "keymap_drawer.config.yaml" # config file, ignored if not exists
-      output_folder: "keymap-drawer"
-      destination: "both"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install keymap-drawer
+        run: pip install keymap-drawer==0.23.0
+
+      - name: Parse keymap
+        run: |
+          set -euo pipefail
+          mkdir -p keymap-drawer
+          keymap -c keymap_drawer.config.yaml parse -z config/CLine46.keymap \
+            > keymap-drawer/CLine46.yaml
+          # CLine46 は ZMK 公式のキーボード一覧に無いため zmk_keyboard では解決できない。
+          # リポジトリ内の物理レイアウト (46キー分の座標) に差し替える。
+          sed -i 's|layout: {zmk_keyboard: CLine46}|layout: {qmk_info_json: config/CLine46.json}|' \
+            keymap-drawer/CLine46.yaml
+          # 差し替えに失敗していたら (parse の出力形式が変わった等) ここで落とす
+          grep -q 'qmk_info_json: config/CLine46.json' keymap-drawer/CLine46.yaml
+
+      - name: Draw all layers
+        run: |
+          set -euo pipefail
+          # レイヤーの削除・改名で古い SVG が残らないよう作り直す
+          rm -f keymap-drawer/CLine46-*.svg
+          keymap -c keymap_drawer.config.yaml draw \
+            -o keymap-drawer/CLine46.svg keymap-drawer/CLine46.yaml
+          # レイヤー名は yaml から取る (ハードコードしないので層を増やしても追従する)
+          python -c "import yaml; print('\n'.join(yaml.safe_load(open('keymap-drawer/CLine46.yaml'))['layers']))" \
+            > /tmp/layers.txt
+          while IFS= read -r L; do
+            [ -n "$L" ] || continue
+            echo "drawing layer: $L"
+            keymap -c keymap_drawer.config.yaml draw \
+              -o "keymap-drawer/CLine46-${L}.svg" keymap-drawer/CLine46.yaml -s "$L"
+          done < /tmp/layers.txt
+          ls -1 keymap-drawer/
+
+      - name: Commit drawings
+        env:
+          HEAD_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add keymap-drawer
+          if git diff --staged --quiet; then
+            echo "図に変更なし"
+            exit 0
+          fi
+          # 元コミットの1行目のみ使う。[skip ci] でファームのビルドを走らせない。
+          subject=$(printf '%s' "${HEAD_MSG:-Update keymap drawings}" | head -1)
+          git commit -m "[Draw] ${subject} [skip ci]"
+          git push

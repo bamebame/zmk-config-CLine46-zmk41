@@ -90,9 +90,11 @@ done
 `keymap_drawer.config.yaml` の `raw_binding_map` は、keymap-drawer が名前を解決できない
 behavior（`&bootloader` / `&studio_unlock` / `&mkp`）に読みやすいラベルを与えている。
 
-なお `.github/workflows/draw.yml`（workflow_dispatch）でも図を生成できるが、
-**全レイヤーを1枚にまとめた `CLine46.svg` しか作らない**ため、レイヤーごとの画像は
-上のコマンドで更新すること。
+通常はこれを手で叩く必要はない。`.github/workflows/draw.yml` が
+`config/CLine46.keymap` / `config/CLine46.json` / `keymap_drawer.config.yaml` の
+push を検知して同じ処理を実行し、`[Draw] ... [skip ci]` というコミットで
+図を自動更新する（`[skip ci]` によりファームの再ビルドは走らない）。
+描画するレイヤー名は parse 結果から取得するため、レイヤーを増減しても追従する。
 
 ## 運用モデル: キーマップの主権はこのリポジトリ
 
