@@ -91,6 +91,35 @@ Studio でレイヤー構成を組み替えるとここは追従しないので�
 **MOUSE 層の左手は F1〜F12**。誤爆すると「何も出ない」ではなく F キーが出るため、
 頻度が気になるなら F キーを別レイヤーへ逃がすこと。
 
+## ファームウェアの書き込み
+
+DYA Studio / ZMK Studio に uf2 書き込み機能は無い（Studio が扱うのは実行中ファームの設定だけ）。
+書き込みは UF2 ブートローダーへのファイルコピーで行う。
+
+### ブートローダーへの入り方
+
+- **キーで入る（推奨）**: `&mo 3`（SCROLL 層）を押しながら、
+  **左半体は p1（デフォルト層の `Q` の位置）/ 右半体は p11（同 `]` の位置）**。
+  `&bootloader` は `BEHAVIOR_LOCALITY_EVENT_SOURCE` なので **押した側の半体だけ**が入る。
+- **物理リセット**: ケースの ▢ の穴から竹串などで Xiao の reset スイッチを 2 回クリック。
+  `&bootloader` を含まないファームが入っている場合（初回など）はこちら。
+
+### 手順
+
+```sh
+# Actions から uf2 を取得
+gh run download <run-id> -n firmware -D /tmp/cline46-fw
+
+# 書き込みたい側を USB 接続 → 上記いずれかでブートローダーへ
+lsblk -o NAME,LABEL,SIZE,MOUNTPOINT | grep -i xiao
+udisksctl mount -b /dev/sdX1          # 自動マウントされなければ
+
+cp /tmp/cline46-fw/CLine46_R.uf2 /run/media/$USER/<VOLUME>/
+sync
+```
+
+コピー完了と同時に自動で再起動する。**左右それぞれ**に対して繰り返すこと。
+
 ## upstream への追従
 
 追従先は `main` ではなく `zmk4.1対応` ブランチ。
