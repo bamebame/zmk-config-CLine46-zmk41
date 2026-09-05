@@ -35,6 +35,65 @@ ZMK 4.1（Zephyr 4.1）系では、**`CONFIG_ZMK_STUDIO=y` のとき central が
 (central) が復帰しない**症状が出たらこれを疑うこと。切り分けは `CONFIG_ZMK_STUDIO=y` を
 一時的に外してビルドする。
 
+## キーマップ
+
+`&mo 3` / `&lt 1` / `&lt 2` の位置は各図の緑枠（held）で示している。`▽` は下の層への透過。
+
+### BASE — デフォルト層
+
+![BASE](keymap-drawer/CLine46-BASE.svg)
+
+### SYM — 記号・数字層（左親指 `SPACE` ホールド）
+
+![SYM](keymap-drawer/CLine46-SYM.svg)
+
+### MOUSE — マウス層（**ボールを動かすと自動で入る** / 左親指 `無変換` ホールドでも入る）
+
+![MOUSE](keymap-drawer/CLine46-MOUSE.svg)
+
+### SCROLL — 設定層（右手小指 `&mo 3`）
+
+スクロールモードでもある（ボール操作がスクロールになる）。`BOOT` はブートローダー、
+`STUDIO` は ZMK Studio のロック解除。
+
+![SCROLL](keymap-drawer/CLine46-SCROLL.svg)
+
+<details>
+<summary>L4 / L5 / L6（未使用・全て透過）</summary>
+
+どのレイヤーからも遷移する手段が定義されていない空きレイヤー。
+
+![L4](keymap-drawer/CLine46-L4.svg)
+![L5](keymap-drawer/CLine46-L5.svg)
+![L6](keymap-drawer/CLine46-L6.svg)
+
+</details>
+
+### キーマップ図の再生成
+
+`config/CLine46.keymap` を変更したら以下で作り直す。物理レイアウトは
+`config/CLine46.json`（46キー分の座標）を使う。
+
+```sh
+pip install keymap-drawer
+
+keymap -c keymap_drawer.config.yaml parse -z config/CLine46.keymap > keymap-drawer/CLine46.yaml
+# parse 直後の layout 行を、このリポジトリ内のレイアウト定義に差し替える
+sed -i 's|layout: {zmk_keyboard: CLine46}|layout: {qmk_info_json: config/CLine46.json}|' keymap-drawer/CLine46.yaml
+
+keymap -c keymap_drawer.config.yaml draw -o keymap-drawer/CLine46.svg keymap-drawer/CLine46.yaml
+for L in BASE SYM MOUSE SCROLL L4 L5 L6; do
+  keymap -c keymap_drawer.config.yaml draw -o "keymap-drawer/CLine46-$L.svg" keymap-drawer/CLine46.yaml -s "$L"
+done
+```
+
+`keymap_drawer.config.yaml` の `raw_binding_map` は、keymap-drawer が名前を解決できない
+behavior（`&bootloader` / `&studio_unlock` / `&mkp`）に読みやすいラベルを与えている。
+
+なお `.github/workflows/draw.yml`（workflow_dispatch）でも図を生成できるが、
+**全レイヤーを1枚にまとめた `CLine46.svg` しか作らない**ため、レイヤーごとの画像は
+上のコマンドで更新すること。
+
 ## 運用モデル: キーマップの主権はこのリポジトリ
 
 キーマップは `config/CLine46.keymap` で管理する。DYA Studio / ZMK Studio は

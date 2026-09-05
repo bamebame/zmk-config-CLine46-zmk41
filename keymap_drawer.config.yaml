@@ -1,0 +1,9 @@
+# keymap-drawer 設定。README のレイヤー画像を生成するときに使う。
+# 再生成方法は README の「キーマップ図の再生成」を参照。
+parse_config:
+  # keymap-drawer が名前を解決できない behavior に読みやすいラベルを与える
+  raw_binding_map:
+    "&bootloader": "BOOT"
+    "&studio_unlock": "STUDIO"
+    "&mkp MB1": "L CLICK"
+    "&mkp MB2": "R CLICK"
