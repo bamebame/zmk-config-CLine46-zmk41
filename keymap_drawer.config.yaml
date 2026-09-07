@@ -10,3 +10,5 @@ parse_config:
     "&mkp LCLK": "L CLICK"
     "&mkp RCLK": "R CLICK"
     "&mkp MCLK": "M CLICK"
+    "&ind_con": "BT?"
+    "&ind_bat": "BATT?"

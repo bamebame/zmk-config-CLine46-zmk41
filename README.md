@@ -73,7 +73,7 @@ Keyball44 に無い余りキーは 2 つ。左最外の親指 (p36) と右のボ
 ### SCROLL — 設定層（右親指最外 `&mo SCROLL`）
 
 ボール操作がスクロールになる層でもある。`BOOT` はブートローダー（左右に 1 つずつ）、
-`STUDIO` は ZMK Studio のロック解除。
+`STUDIO` は ZMK Studio のロック解除、`BT?` / `BATT?` は LED で接続状態・電池残量を確認する。
 
 ![SCROLL](keymap-drawer/CLine46-SCROLL.svg)
 
@@ -180,27 +180,48 @@ upstream 既定は Keyball より十数 dB リンクマージンが不利だっ�
 
 **トレードオフ**: 送信出力を上げるぶん電池を消費する。
 
-### 未適用: トラックボールの省電力ダウンシフト
+### トラックボールの省電力ダウンシフト
 
-upstream が 4.1 対応ブランチへ移行した際、v0.3 版にあった以下の 2 行が消えている。
+`boards/shields/CLine46/CLine46_R.conf`
 
-```
-CONFIG_PMW3610_RUN_DOWNSHIFT_TIME_MS=500
-CONFIG_PMW3610_REST1_SAMPLE_TIME_MS=20
-```
+upstream が 4.1 対応ブランチへ移行した際、v0.3 版にあった指定が落ちていたので入れ直した。
 
-`badjeff/zmk-pmw3610-driver` の既定は **128ms / 40ms(25Hz)** なので、
-**0.13 秒指を止めるとセンサーが 25Hz に落ちる**。動かし始めが粗くなる症状が出たら、
-以下を `CLine46_R.conf` に追加する (Keyball44 と同じ値)。
+| | RUN → REST1 | REST1 のサンプリング周期 |
+|---|---|---|
+| ドライバ既定 | 128ms | 40ms (25Hz) |
+| upstream v0.3 版 | 500ms | 20ms |
+| **本リポジトリ** | **3264ms** | **20ms** |
 
-```
-CONFIG_PMW3610_ALT_RUN_DOWNSHIFT_TIME_MS=3264
-CONFIG_PMW3610_ALT_REST1_SAMPLE_TIME_MS=20
-```
+既定のままだと **0.13 秒指を止めるだけでサンプリングが 25Hz に落ち**、動かし始めが
+粗くなる。3264 は `PMW3610_ALT_RUN_DOWNSHIFT_TIME_MS` の上限で、zmk-config-Keyball44
+と同じ値。
 
-こちらも電池を消費するため、BLE 側の調整で解決するなら入れない。
+**トレードオフ**: センサーが 3.26 秒間フル稼働し続けるため電池を消費する。
 
-## ファームウェアの書き込み
+### LED インジケーター (BT / バッテリー)
+
+Xiao の RGB LED を [`caksoylar/zmk-rgbled-widget`](https://github.com/caksoylar/zmk-rgbled-widget)
+が制御している。`rgbled_adapter` シールドを build.yaml に入れてあるので既に有効。
+
+**起動時と、BT プロファイルを切り替えるたびに**、選択中プロファイルの状態を色で点滅する。
+
+| 色 | 意味 | ZMK 内部の判定 |
+|---|---|---|
+| 🔵 青 | **接続済み** | 選択中エンドポイントが BLE で接続されている |
+| 🟡 黄 | **未登録**（空きスロット / ペアリング待ち） | `zmk_ble_active_profile_is_open()` が真 |
+| 🔴 赤 | **ペアリング済みだが未接続** | 上記いずれでもない |
+
+SCROLL 層に確認用のキーを置いてある。
+
+- `BT?` (`&ind_con`) … 現在のプロファイルの接続状態を点滅
+- `BATT?` (`&ind_bat`) … バッテリー残量を点滅（🟢 高 / 🟡 中 / 🔴 低）
+
+**プロファイル番号 (0〜4) は LED では表示できない。** `zmk-rgbled-widget` に
+その機能が無いため（Kconfig に profile 関連の項目が存在せず、`indicate_connectivity()`
+は色を1色出すだけ）。番号を知りたい場合は SCROLL 層の `&bt BT_SEL 0`〜`4` を順に押すと、
+押した番号のプロファイルの状態が色で返るので、5 つ回せば全体が把握できる。
+
+## ファームウェアの書き込み## ファームウェアの書き込み
 
 DYA Studio / ZMK Studio に uf2 書き込み機能は無い（Studio が扱うのは実行中ファームの設定だけ）。
 書き込みは UF2 ブートローダーへのファイルコピーで行う。
