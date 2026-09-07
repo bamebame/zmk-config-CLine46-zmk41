@@ -160,6 +160,46 @@ Studio でレイヤー構成を組み替えるとここは追従しないので�
 BALL 層の左手はほぼ `&none` / `&trans`。`excluded-positions` に無いキーは押した時点で
 層を抜けるので、誤爆しても次の打鍵から通常どおり入力できる。
 
+### BLE リンクの安定化
+
+`boards/shields/CLine46/CLine46_L.conf` / `CLine46_R.conf`
+
+BLE 接続時にマウスが「時々止まる」「連続的にカクつく」症状が出たため、
+zmk-config-Keyball44 で使っている設定に揃えた。upstream には無い。
+
+| | upstream (既定) | 本リポジトリ |
+|---|---|---|
+| 送信出力 | 0 dBm | **+8 dBm** (`BT_CTLR_TX_PWR_PLUS_8`) |
+| PHY | 2M 有効 | **1M** (`ZMK_BLE_EXPERIMENTAL_CONN` により `BT_CTLR_PHY_2M=n`) |
+| ACL TX バッファ | 3 | **8** |
+| L2CAP TX バッファ | 3 (ACL_TX に追従) | **32** |
+
+2M PHY は速い代わりに受信感度が 1M PHY より約 6dB 悪い。送信出力と合わせると
+upstream 既定は Keyball より十数 dB リンクマージンが不利だった。
+送信バッファはマウスレポートの頻度に対して既定の 3 では不足する。
+
+**トレードオフ**: 送信出力を上げるぶん電池を消費する。
+
+### 未適用: トラックボールの省電力ダウンシフト
+
+upstream が 4.1 対応ブランチへ移行した際、v0.3 版にあった以下の 2 行が消えている。
+
+```
+CONFIG_PMW3610_RUN_DOWNSHIFT_TIME_MS=500
+CONFIG_PMW3610_REST1_SAMPLE_TIME_MS=20
+```
+
+`badjeff/zmk-pmw3610-driver` の既定は **128ms / 40ms(25Hz)** なので、
+**0.13 秒指を止めるとセンサーが 25Hz に落ちる**。動かし始めが粗くなる症状が出たら、
+以下を `CLine46_R.conf` に追加する (Keyball44 と同じ値)。
+
+```
+CONFIG_PMW3610_ALT_RUN_DOWNSHIFT_TIME_MS=3264
+CONFIG_PMW3610_ALT_REST1_SAMPLE_TIME_MS=20
+```
+
+こちらも電池を消費するため、BLE 側の調整で解決するなら入れない。
+
 ## ファームウェアの書き込み
 
 DYA Studio / ZMK Studio に uf2 書き込み機能は無い（Studio が扱うのは実行中ファームの設定だけ）。
